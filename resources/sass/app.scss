@@ -1,0 +1,95 @@
+// Fonts
+@import url('https://fonts.googleapis.com/css?family=Nunito');
+
+// Variables
+@import 'variables';
+
+// Bootstrap
+@import '~bootstrap/scss/bootstrap';
+
+.table td {
+  padding-left: .25rem;
+  padding-right: .25rem;
+}
+
+@import "~tailwindcss/base";
+@import "~tailwindcss/components";
+@import "~tailwindcss/utilities";
+
+.image-avatar {
+    height: 2rem;
+    width: 2rem;
+    margin-top: 5px;
+}
+
+.nav-right {
+    margin-right: 20px;
+}
+
+.new-cars-drop {
+    padding-top: 1.5rem !important;
+}
+
+.listing-width {
+    max-width: 120rem !important;
+}
+
+
+[x-cloak] {
+    display: none;
+}
+
+.svg-icon {
+    width: 1em;
+    height: 1em;
+}
+
+.svg-icon path,
+.svg-icon polygon,
+.svg-icon rect {
+    fill: #333;
+}
+
+.svg-icon circle {
+    stroke: #4691f6;
+    stroke-width: 1;
+}
+
+
+input[type=range]::-webkit-slider-thumb {
+    pointer-events: all;
+    width: 24px;
+    height: 24px;
+    -webkit-appearance: none;
+    /* @apply w-6 h-6 appearance-none pointer-events-auto; */
+}
+
+
+.loader {
+    border-top-color: #3498db;
+    -webkit-animation: spinner 1.5s linear infinite;
+    animation: spinner 1.5s linear infinite;
+}
+
+@-webkit-keyframes spinner {
+    0% {
+        -webkit-transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+@keyframes spinner {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.splide__slide img {
+    width : 100%;
+    height: auto;
+}

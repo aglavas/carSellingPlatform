@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 24.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd" [
+	<!ENTITY ns_extend "http://ns.adobe.com/Extensibility/1.0/">
+	<!ENTITY ns_ai "http://ns.adobe.com/AdobeIllustrator/10.0/">
+	<!ENTITY ns_graphs "http://ns.adobe.com/Graphs/1.0/">
+	<!ENTITY ns_vars "http://ns.adobe.com/Variables/1.0/">
+	<!ENTITY ns_imrep "http://ns.adobe.com/ImageReplacement/1.0/">
+	<!ENTITY ns_sfw "http://ns.adobe.com/SaveForWeb/1.0/">
+	<!ENTITY ns_custom "http://ns.adobe.com/GenericCustomNamespace/1.0/">
+	<!ENTITY ns_adobe_xpath "http://ns.adobe.com/XPath/1.0/">
+]>
+<svg version="1.1" id="AMG_x5F_Logo_xA0_Bild_1_" xmlns:x="&ns_extend;" xmlns:i="&ns_ai;" xmlns:graph="&ns_graphs;"
+	 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 800 100"
+	 style="enable-background:new 0 0 800 100;" xml:space="preserve">
+<metadata>
+	<sfw  xmlns="&ns_sfw;">
+		<slices></slices>
+		<sliceSourceBounds  bottomLeftOrigin="true" height="75.6" width="776.7" x="-188.2" y="161.5"></sliceSourceBounds>
+	</sfw>
+</metadata>
+<g>
+	<polygon points="189.2,13 145.2,88.4 168.2,88.5 211.6,13.2 	"/>
+	<path d="M180.7,13.2l-33.9,0.1l-43.9,74.9l33.9,0.1c0,0,15.1-25.9,22.1-37.8C166,38.3,180.7,13.2,180.7,13.2z"/>
+	<path d="M139.5,13.4l-83.2-0.3L11.8,88.3h84c0,0,19-32.8,28-48.1C129,31.4,139.5,13.4,139.5,13.4z"/>
+	<polygon points="253.2,13.2 209.6,88.4 223.4,88.4 267.2,13.3 	"/>
+	<polygon points="223.3,13.3 179.3,88.4 195.8,88.4 240.4,13.3 	"/>
+	<polygon points="701.8,41.6 701.7,59.5 764.7,59.5 764.7,69.6 667.2,69.4 667.1,30.9 788.3,30.9 788.4,12.9 642.6,12.9 642.9,88.2 
+		788.4,88.2 788.5,41.5 	"/>
+	<path d="M531.1,46l-50.3-33l-34.6-0.2l-0.1,75.2l24,0.2l0-56.4l47.3,34.5l25.1,0.2c0,0,45.5-31.9,49.5-34.6c0,19,0,56.2,0,56.2
+		l24.2,0.1l0.1-75.2l-35.8,0.2L531.1,46z"/>
+	<path d="M290.6,12.9l-44.1,75.2l27.4-0.1l9.5-16.2l110.3,0.1l8.2,16.3l26.5-0.1L388.1,13L290.6,12.9z M293.3,52.5l11.8-22l68.7,0.4
+		l10.1,21.6H293.3z"/>
+</g>
+</svg>

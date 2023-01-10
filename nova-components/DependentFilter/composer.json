@@ -1,0 +1,30 @@
+{
+    "name": "efdi/dependent-filter",
+    "description": "A Laravel Nova filter.",
+    "keywords": [
+        "laravel",
+        "nova"
+    ],
+    "license": "MIT",
+    "require": {
+        "php": ">=7.1.0",
+        "awesome-nova/dependent-filter": "^1.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "Efdi\\DependentFilter\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Efdi\\DependentFilter\\FilterServiceProvider"
+            ]
+        }
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}

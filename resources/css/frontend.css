@@ -1,0 +1,144 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+[x-cloak] {
+    display: none !important;
+}
+
+.striped-table > tbody tr:nth-of-type(odd) {
+    @apply bg-gray-100;
+}
+
+.striped-table > tbody tr:hover {
+    @apply bg-blue-50;
+}
+
+.profile-bottom {
+    position: absolute;
+    bottom: 0;
+}
+
+.w-144 {
+    width: 36rem;
+}
+.w-160 {
+    width: 40rem;
+}
+.w-192 {
+    width: 48rem;
+}
+
+.profile-padding {
+    padding-left: 0.5rem;
+    padding-right: 3.2rem;
+}
+
+
+.bg-gray-50-custom {
+    --tw-bg-opacity: 1;
+    background-color: rgba(235, 235, 235, var(--tw-bg-opacity));
+}
+
+
+.cart-button-bg {
+    background-color: rgba(0, 92, 184, var(--tw-bg-opacity));
+    --tw-bg-opacity: 1;
+}
+
+
+.text-custom-indigo {
+    --tw-text-opacity: 1;
+    color: rgba(0, 92, 184, var(--tw-text-opacity));
+}
+
+.text-custom-gray {
+    --tw-text-opacity: 1;
+    color: rgba(41, 41, 41, var(--tw-text-opacity));
+}
+
+.bg-custom-grey {
+    --tw-text-opacity: 1;
+    background-color: rgba(235, 235, 235, var(--tw-bg-opacity));
+}
+
+.max-w-7xl5 {
+    max-width: 83rem;
+}
+
+.disabled {
+    pointer-events: none;
+    cursor: default;
+}
+
+
+.clickable {
+    cursor: pointer;
+}
+
+.noVatColor {
+    color: rgba(157, 27, 85, var(--tw-text-opacity)) !important;
+}
+
+
+/* since nested groupes are not supported we have to use
+     regular css for the nested dropdowns
+  */
+li>ul                 { transform: translatex(100%) scale(0) }
+li:hover>ul           { transform: translatex(101%) scale(1) }
+li > button svg       { transform: rotate(-90deg) }
+li:hover > button svg { transform: rotate(-270deg) }
+
+/* Below styles fake what can be achieved with the tailwind config
+   you need to add the group-hover variant to scale and define your custom
+   min width style.
+     See https://codesandbox.io/s/tailwindcss-multilevel-dropdown-y91j7?file=/index.html
+     for implementation with config file
+*/
+.group:hover .group-hover\:scale-100 { transform: scale(1) }
+.group:hover .group-hover\:-rotate-180 { transform: rotate(180deg) }
+.scale-0 { transform: scale(0) }
+.min-w-32 { min-width: 8rem }
+
+
+#mobileNav li { padding: 0px; }
+#mobileNav li a { margin: 0px; display: block; width: 100%; height: 100%; }
+
+
+.disabledbutton {
+    pointer-events: none;
+    opacity: 0.4;
+}
+
+.margin-table-view {
+    margin-left: 30rem;
+}
+
+.margin-card-view {
+    margin-left: 16rem;
+}
+
+
+.toggle-checkbox:checked {
+    @apply: right-0 border-green-400;
+    right: 0;
+    border-color: #68D391;
+}
+
+.toggle-checkbox:checked + .toggle-label {
+    @apply: bg-green-400;
+    background-color: #68D391;
+}
+
+.toggle-checkbox2 {
+    @apply: right-0 border-green-400;
+    right: 0;
+    border-color: #68D391;
+}
+
+.toggle-label2 {
+    @apply: bg-green-400;
+    background-color: #68D391;
+}
+
+

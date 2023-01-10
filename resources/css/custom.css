@@ -1,0 +1,24 @@
+div[dusk="stock-used-central-europes-index-component"] div[dusk="filter-selector"] {
+    display: none;
+}
+
+.number {
+    border: 1px solid white;
+    border-radius: 1.6rem;
+    width: 2rem;
+    text-align: center;
+    color: white;
+    background-color: red;
+}
+
+.label-div {
+    display: inline-block;
+}
+
+.number-div {
+    display: inline-block;
+}
+
+.to-right {
+    float: right;
+}

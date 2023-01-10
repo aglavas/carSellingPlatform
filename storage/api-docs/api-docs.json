@@ -1,0 +1,1973 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Carmarket API",
+        "contact": {
+            "name": "Support Team",
+            "email": "support@ticketzone.com"
+        },
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/api/v1/inside/vehicle": {
+            "post": {
+                "summary": "Store a single vehicle from Inside",
+                "description": "Store vehicle from Inside",
+                "operationId": "5c57b74edef6e71bef5bd34dcc7e7a50",
+                "requestBody": {
+                    "description": "Request body for vehicle store",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/InsideVehicleStoreRequestSchema"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/SuccessMessageSchema"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ValidationSchema"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ValidationSchema"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "AuthJWT": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/vehicle": {
+            "get": {
+                "summary": "List all vehicles",
+                "description": "List all vehicles",
+                "responses": {
+                    "200": {
+                        "description": "Vehicle list response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "required": [
+                                        "status, data"
+                                    ],
+                                    "properties": {
+                                        "status": {
+                                            "type": "string"
+                                        },
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/VehicleResponseSchema"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ValidationSchema"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "AuthJWT": []
+                    }
+                ]
+            },
+            "post": {
+                "summary": "Store a single vehicle",
+                "description": "Store a vehicle",
+                "operationId": "9823510535803f19fef6312f28822aff",
+                "requestBody": {
+                    "description": "Request body for vehicle store",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/VehicleStoreRequestSchema"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/SuccessMessageSchema"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ValidationSchema"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ValidationSchema"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "AuthJWT": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/vehicle/import": {
+            "post": {
+                "summary": "Import vehicle list",
+                "description": "Import a vehicle list",
+                "operationId": "49511b6343cc0254da29f9299864143b",
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "properties": {
+                                    "file": {
+                                        "description": "Excel list",
+                                        "type": "string",
+                                        "format": "binary"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/SuccessMessageSchema"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ValidationSchema"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ValidationSchema"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "AuthJWT": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/vehicle/{vehicle}": {
+            "put": {
+                "summary": "Update a vehicle",
+                "description": "Update a vehicle",
+                "operationId": "10ad4d859ecf48cbc26dae4df27e1084",
+                "parameters": [
+                    {
+                        "name": "vehicle",
+                        "in": "path",
+                        "description": "Vehicle identifier",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "Request body for vehicle update",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/VehicleUpdateRequestSchema"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Vehicle updated response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "required": [
+                                        "status, data"
+                                    ],
+                                    "properties": {
+                                        "status": {
+                                            "type": "string"
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/VehicleResponseSchema"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ValidationSchema"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Error with request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ValidationSchema"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ValidationSchema"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "User is not authorized for this request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ValidationSchema"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ValidationSchema"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "AuthJWT": []
+                    }
+                ]
+            },
+            "delete": {
+                "summary": "Delete a vehicle",
+                "description": "Delete a vehicle",
+                "operationId": "ca6b0f7c2ae5c5588325ca6366fea452",
+                "parameters": [
+                    {
+                        "name": "vehicle",
+                        "in": "path",
+                        "description": "Vehicle identifier",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/SuccessMessageSchema"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ValidationSchema"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ValidationSchema"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "AuthJWT": []
+                    }
+                ]
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "ValidationError": {
+                "properties": {
+                    "field_key": {
+                        "type": "array",
+                        "items": {
+                            "properties": {
+                                "message": {
+                                    "type": "string",
+                                    "example": "name is required field"
+                                }
+                            },
+                            "type": "string"
+                        }
+                    }
+                },
+                "type": "object"
+            },
+            "InsideVehicleStoreRequestSchema": {
+                "description": "Vehicle store request Schema for vehicles coming from Inside. Request schema is simplified and uses only one language (German). Additional fields (the ones that aren't in standard Inside feed) are: Availability,B2bPriceExVat,BodyColorCode,BodyColorText,ConsumptionTotal,ConsumptionTotal,CountryOrigin,CurrencyIso,AdditionalProperties,URLmarketplace,VatDeductible.",
+                "required": [
+                    "ChassisCode",
+                    "CountryOrigin",
+                    "MakeText",
+                    "ModelText",
+                    "ModelTypeText",
+                    "Ccm",
+                    "Hp",
+                    "FuelTypeText",
+                    "TransmissionTypeText",
+                    "Km",
+                    "FirstRegMonth",
+                    "FirstRegYear",
+                    "BodyColorText",
+                    "Co2Emission",
+                    "B2bPriceExVat",
+                    "VatDeductible",
+                    "Seller",
+                    "CurrencyIso",
+                    "ConditionTypeText",
+                    "VehicleType"
+                ],
+                "properties": {
+                    "de": {
+                        "properties": {
+                            "AccountId": {
+                                "description": "Id of the company owning vehicle from Inside",
+                                "type": "integer",
+                                "example": "702"
+                            },
+                            "Availability": {
+                                "description": "Availability date of the vehicle",
+                                "type": "string",
+                                "example": "03/07/2022"
+                            },
+                            "B2bPriceExVat": {
+                                "description": "B2B price",
+                                "type": "numeric",
+                                "example": "43434.23"
+                            },
+                            "BodyColorCode": {
+                                "description": "Color code of vehicle",
+                                "type": "string",
+                                "example": "9197"
+                            },
+                            "BodyColorText": {
+                                "description": "Color description of vehicle",
+                                "type": "string",
+                                "example": "obsidian black metallic"
+                            },
+                            "BodyTypeText": {
+                                "description": "Body type of the vehicle",
+                                "type": "string",
+                                "example": "Kombi"
+                            },
+                            "CarNumber": {
+                                "description": "SKU number of vehicle",
+                                "type": "string",
+                                "example": "51007186/02"
+                            },
+                            "Ccm": {
+                                "description": "Engine ccm info",
+                                "type": "integer",
+                                "example": "1331"
+                            },
+                            "CertificationCode": {
+                                "description": "Certification code",
+                                "type": "string",
+                                "example": "1KA607"
+                            },
+                            "ChassisCode": {
+                                "description": "Chassis code of the vehicle (VIN)",
+                                "type": "string",
+                                "example": "U5YH5F1AGLL003829"
+                            },
+                            "Co2Emission": {
+                                "description": "Co2 emission value of vehicle",
+                                "type": "integer",
+                                "example": "32"
+                            },
+                            "Comments": {
+                                "description": "Comments about the vehicle",
+                                "type": "string",
+                                "example": "Herzlich willkommen bei der Emil Frey AG - Ihrem Autohaus in Zürich. Ihr Interesse an unserem Fahrzeug freut uns sehr..."
+                            },
+                            "ConditionTypeText": {
+                                "description": "Condition of the vehicle. Determines if vehicle is used or new.",
+                                "type": "string",
+                                "example": "Used"
+                            },
+                            "ConsumptionCity": {
+                                "description": "Fuel consumption in city.",
+                                "type": "numeric",
+                                "example": "7.6"
+                            },
+                            "ConsumptionLand": {
+                                "description": "Fuel consumption outside of city.",
+                                "type": "numeric",
+                                "example": "6.6"
+                            },
+                            "ConsumptionRatingText": {
+                                "description": "Fuel consumption rating.",
+                                "type": "string",
+                                "example": "A"
+                            },
+                            "ConsumptionTotal": {
+                                "description": "Total fuel consumption.",
+                                "type": "numeric",
+                                "example": "7.1"
+                            },
+                            "CountryOrigin": {
+                                "description": "Vehicle origin.",
+                                "type": "string",
+                                "example": "DE"
+                            },
+                            "CurrencyIso": {
+                                "description": "Price currency.",
+                                "type": "string",
+                                "example": "EUR"
+                            },
+                            "Cylinders": {
+                                "description": "Numer of cylinders in engine.",
+                                "type": "integer",
+                                "example": "4"
+                            },
+                            "Documents": {
+                                "description": "Links to car documents.",
+                                "type": "array",
+                                "items": {},
+                                "example": [
+                                    "www.pathtodoc1.com",
+                                    "www.pathtodoc2.com"
+                                ]
+                            },
+                            "Doors": {
+                                "description": "Numer of doors of the vehicle.",
+                                "type": "integer",
+                                "example": "4"
+                            },
+                            "DriveTypeText": {
+                                "description": "Drive type of the vehicle.",
+                                "type": "string",
+                                "example": "Front-wheel"
+                            },
+                            "Equipment": {
+                                "description": "Vehicle equipment info",
+                                "properties": {
+                                    "AutoIDatEquipment": {
+                                        "properties": {
+                                            "OptionalEquipment": {
+                                                "type": "array",
+                                                "items": {}
+                                            },
+                                            "StandardEquipment": {
+                                                "type": "array",
+                                                "items": {}
+                                            },
+                                            "StandardItems": {
+                                                "type": "array",
+                                                "items": {}
+                                            },
+                                            "StandardPackages": {
+                                                "type": "array",
+                                                "items": {}
+                                            },
+                                            "OptionalItems": {
+                                                "type": "array",
+                                                "items": {}
+                                            },
+                                            "OptionalPackages": {
+                                                "type": "array",
+                                                "items": {}
+                                            }
+                                        },
+                                        "type": "object"
+                                    },
+                                    "SearchableEquipment": {
+                                        "type": "array",
+                                        "items": {}
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "AutoIDatEquipment": {
+                                        "OptionalEquipment": [
+                                            "Metallic-/ Pearl-Lackierung",
+                                            "Glasschiebedach elektrisch"
+                                        ],
+                                        "StandardEquipment": [
+                                            "Müdigkeitserkennung",
+                                            "Klimaanlage automatisch",
+                                            "Ambientebeleuchtung",
+                                            "Wärmepumpe",
+                                            "Fernlichtassistent",
+                                            "Lenkradheizung",
+                                            "Bremsassistent BA",
+                                            "Leichtmetallfelgen 17\\",
+                                            "Keine Gewähr auf die Angaben der Serienausstattungen",
+                                            "Aussenspiegelgehäuse schwarz",
+                                            "LED-Scheinwerfer",
+                                            "Spurhalteassistent LKA",
+                                            "Details siehe gültige Preisliste des Importeurs",
+                                            "230 V Steckdose hinten",
+                                            "Garantie 7 Jahre/ 150'000 km",
+                                            "Schaltwippen am Lenkrad",
+                                            "Servolenkung elektrisch",
+                                            "Automatisch abblendbarer Innenspiegel",
+                                            "On-Board Lader",
+                                            "HSA Berganfahrassistent",
+                                            "Sitzheizung vorne",
+                                            "Rücksitzbank geteilt abklappbar 60/40",
+                                            "Privacy-Verglasung",
+                                            "DAB+ Digital Audio Broadcast",
+                                            "Aussenspiegel elektrisch einklappbar",
+                                            "Isofix-Kindersitzbefestigung hinten",
+                                            "Park-Distanz-Sensor hinten",
+                                            "Reifendruck-Sensoren TPMS",
+                                            "Licht- und Regensensor",
+                                            "Nebelscheinwerfer vorne",
+                                            "Apple Car Play/ Android Auto",
+                                            "Vordersitze höhenverstellbar",
+                                            "Smart-Key",
+                                            "LED Tagfahrlicht",
+                                            "Deaktivierung Beifahrerairbag",
+                                            "Türgriffe aussen verchromt",
+                                            "Lederlenkrad mit Lederschaltknauf",
+                                            "Bluetooth und Sprachsteuerung",
+                                            "TCS Elektronische Traktionskontrolle",
+                                            "USB-Anschluss",
+                                            "Kopfairbag vorne und hinten",
+                                            "ESP Elektronisches Stabilitätsprogramm",
+                                            "Elektrische Fensterheber vorne + hinten",
+                                            "Sitzbezüge in Stoff/ Leder",
+                                            "Aussenspiegel elektrisch verstellbar/ heizbar",
+                                            "Airbag Fahrer und Beifahrerseite",
+                                            "Zentralverriegelung mit Fernbedienung",
+                                            "Adaptiver Tempomat ACC",
+                                            "LED Rückleuchten",
+                                            "Notbrems-Assistent",
+                                            "Navigationssystem mit Rückfahrkamera",
+                                            "ABS/ EBD",
+                                            "Dachreling",
+                                            "Seitenairbags vorne"
+                                        ],
+                                        "StandardItems": [
+                                            "Müdigkeitserkennung",
+                                            "Klimaanlage automatisch",
+                                            "Ambientebeleuchtung",
+                                            "Wärmepumpe",
+                                            "Fernlichtassistent",
+                                            "Lenkradheizung",
+                                            "Bremsassistent BA",
+                                            "Leichtmetallfelgen 17\\",
+                                            "Keine Gewähr auf die Angaben der Serienausstattungen",
+                                            "Aussenspiegelgehäuse schwarz",
+                                            "LED-Scheinwerfer",
+                                            "Spurhalteassistent LKA",
+                                            "Details siehe gültige Preisliste des Importeurs",
+                                            "230 V Steckdose hinten",
+                                            "Garantie 7 Jahre/ 150'000 km",
+                                            "Schaltwippen am Lenkrad",
+                                            "Servolenkung elektrisch",
+                                            "Automatisch abblendbarer Innenspiegel",
+                                            "On-Board Lader",
+                                            "HSA Berganfahrassistent",
+                                            "Sitzheizung vorne",
+                                            "Rücksitzbank geteilt abklappbar 60/40",
+                                            "Privacy-Verglasung",
+                                            "DAB+ Digital Audio Broadcast",
+                                            "Aussenspiegel elektrisch einklappbar",
+                                            "Isofix-Kindersitzbefestigung hinten",
+                                            "Park-Distanz-Sensor hinten",
+                                            "Reifendruck-Sensoren TPMS",
+                                            "Licht- und Regensensor",
+                                            "Nebelscheinwerfer vorne",
+                                            "Apple Car Play/ Android Auto",
+                                            "Vordersitze höhenverstellbar",
+                                            "Smart-Key",
+                                            "LED Tagfahrlicht",
+                                            "Deaktivierung Beifahrerairbag",
+                                            "Türgriffe aussen verchromt",
+                                            "Lederlenkrad mit Lederschaltknauf",
+                                            "Bluetooth und Sprachsteuerung",
+                                            "TCS Elektronische Traktionskontrolle",
+                                            "USB-Anschluss",
+                                            "Kopfairbag vorne und hinten",
+                                            "ESP Elektronisches Stabilitätsprogramm",
+                                            "Elektrische Fensterheber vorne + hinten",
+                                            "Sitzbezüge in Stoff/ Leder",
+                                            "Aussenspiegel elektrisch verstellbar/ heizbar",
+                                            "Airbag Fahrer und Beifahrerseite",
+                                            "Zentralverriegelung mit Fernbedienung",
+                                            "Adaptiver Tempomat ACC",
+                                            "LED Rückleuchten",
+                                            "Notbrems-Assistent",
+                                            "Navigationssystem mit Rückfahrkamera",
+                                            "ABS/ EBD",
+                                            "Dachreling",
+                                            "Seitenairbags vorne"
+                                        ],
+                                        "StandardPackages": [],
+                                        "OptionalItems": [
+                                            "Metallic-/ Pearl-Lackierung",
+                                            "Glasschiebedach elektrisch"
+                                        ],
+                                        "OptionalPackages": [
+                                            {
+                                                "PackageName": "Pack Style",
+                                                "PackageItems": [
+                                                    "Rückfahr-Querverkehrswarner",
+                                                    "Fahrersitz mit Memory",
+                                                    "Sitzbezüge in Leder",
+                                                    "Details siehe Preisliste",
+                                                    "Park-Distanz-Sensor vorne",
+                                                    "Wireless Charging für mobile Geräte",
+                                                    "JBL Hi-Fi System",
+                                                    "Fahrersitz elektrisch verstellbar mit Lendenwirbelstütze",
+                                                    "Totwinkel-Assistent",
+                                                    "Sitzheizung hinten",
+                                                    "Aktive Sitzbelüftung vorn"
+                                                ]
+                                            }
+                                        ]
+                                    },
+                                    "SearchableEquipment": [
+                                        "1",
+                                        "5",
+                                        "6",
+                                        "7",
+                                        "9",
+                                        "10",
+                                        "15",
+                                        "181",
+                                        "188",
+                                        "219"
+                                    ]
+                                }
+                            },
+                            "FirstRegMonth": {
+                                "description": "Month of first registration.",
+                                "type": "integer",
+                                "example": "4"
+                            },
+                            "FirstRegYear": {
+                                "description": "Year of first registration.",
+                                "type": "integer",
+                                "example": "2021"
+                            },
+                            "FuelTypeText": {
+                                "description": "Fuel type.",
+                                "type": "string",
+                                "example": "Gasoline"
+                            },
+                            "HasWarranty": {
+                                "description": "Has warranty flag.",
+                                "type": "boolean",
+                                "example": "true"
+                            },
+                            "Hp": {
+                                "description": "Horse power of the engine.",
+                                "type": "numeric",
+                                "example": "204.0"
+                            },
+                            "Id": {
+                                "description": "Id of vehicle from Inside database.",
+                                "type": "integer",
+                                "example": "37"
+                            },
+                            "Images": {
+                                "description": "Vehicle Images",
+                                "properties": {
+                                    "S": {
+                                        "type": "array",
+                                        "items": {}
+                                    },
+                                    "M": {
+                                        "type": "array",
+                                        "items": {}
+                                    },
+                                    "L": {
+                                        "type": "array",
+                                        "items": {}
+                                    },
+                                    "XL": {
+                                        "type": "array",
+                                        "items": {}
+                                    },
+                                    "Original": {
+                                        "type": "array",
+                                        "items": {}
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "S": [
+                                        "https://stage1-vp-ch.emilfreydigital.hr/vp_files/stock_images/80362/d0332a2e-57a3-4f74-a12c-345fa8bb497b_95.jpg",
+                                        "https://stage1-vp-ch.emilfreydigital.hr/vp_files/stock_images/80362/1fe067b6-cc4f-4419-bb51-611c43399066_95.jpg",
+                                        "https://stage1-vp-ch.emilfreydigital.hr/vp_files/stock_images/80362/da231a84-7966-4a2c-a134-f60150629a02_95.jpg",
+                                        "https://stage1-vp-ch.emilfreydigital.hr/vp_files/stock_images/80362/6ed7cc57-4b41-41a4-9573-bb454d781229_95.jpg",
+                                        "https://stage1-vp-ch.emilfreydigital.hr/vp_files/stock_images/80362/0899415a-1c72-4f99-ba1a-79c7d14b601a_95.jpg",
+                                        "https://stage1-vp-ch.emilfreydigital.hr/vp_files/stock_images/80362/26141823-ed17-47ba-888e-9c5264239057_95.jpg",
+                                        "https://stage1-vp-ch.emilfreydigital.hr/vp_files/stock_images/80362/77ed9cb8-7f02-42c4-b94c-33e13b3874bf_95.jpg",
+                                        "https://stage1-vp-ch.emilfreydigital.hr/vp_files/stock_images/80362/f371736a-ed9e-4eec-a86c-5bb312a980ee_95.jpg",
+                                        "https://stage1-vp-ch.emilfreydigital.hr/vp_files/stock_images/80362/b9bcff16-b6ea-4446-bf26-798045ac51c7_95.jpg",
+                                        "https://stage1-vp-ch.emilfreydigital.hr/vp_files/stock_images/80362/7b723304-c410-486e-958c-b548ac45c7ea_95.jpg"
+                                    ],
+                                    "M": [
+                                        "https://stage1-vp-ch.emilfreydigital.hr/vp_files/stock_images/80362/d0332a2e-57a3-4f74-a12c-345fa8bb497b_300.jpg",
+                                        "https://stage1-vp-ch.emilfreydigital.hr/vp_files/stock_images/80362/1fe067b6-cc4f-4419-bb51-611c43399066_300.jpg",
+                                        "https://stage1-vp-ch.emilfreydigital.hr/vp_files/stock_images/80362/da231a84-7966-4a2c-a134-f60150629a02_300.jpg",
+                                        "https://stage1-vp-ch.emilfreydigital.hr/vp_files/stock_images/80362/6ed7cc57-4b41-41a4-9573-bb454d781229_300.jpg",
+                                        "https://stage1-vp-ch.emilfreydigital.hr/vp_files/stock_images/80362/0899415a-1c72-4f99-ba1a-79c7d14b601a_300.jpg",
+                                        "https://stage1-vp-ch.emilfreydigital.hr/vp_files/stock_images/80362/26141823-ed17-47ba-888e-9c5264239057_300.jpg",
+                                        "https://stage1-vp-ch.emilfreydigital.hr/vp_files/stock_images/80362/77ed9cb8-7f02-42c4-b94c-33e13b3874bf_300.jpg",
+                                        "https://stage1-vp-ch.emilfreydigital.hr/vp_files/stock_images/80362/f371736a-ed9e-4eec-a86c-5bb312a980ee_300.jpg",
+                                        "https://stage1-vp-ch.emilfreydigital.hr/vp_files/stock_images/80362/b9bcff16-b6ea-4446-bf26-798045ac51c7_300.jpg",
+                                        "https://stage1-vp-ch.emilfreydigital.hr/vp_files/stock_images/80362/7b723304-c410-486e-958c-b548ac45c7ea_300.jpg"
+                                    ],
+                                    "L": [
+                                        "https://stage1-vp-ch.emilfreydigital.hr/vp_files/stock_images/80362/d0332a2e-57a3-4f74-a12c-345fa8bb497b_640.jpg",
+                                        "https://stage1-vp-ch.emilfreydigital.hr/vp_files/stock_images/80362/1fe067b6-cc4f-4419-bb51-611c43399066_640.jpg",
+                                        "https://stage1-vp-ch.emilfreydigital.hr/vp_files/stock_images/80362/da231a84-7966-4a2c-a134-f60150629a02_640.jpg",
+                                        "https://stage1-vp-ch.emilfreydigital.hr/vp_files/stock_images/80362/6ed7cc57-4b41-41a4-9573-bb454d781229_640.jpg",
+                                        "https://stage1-vp-ch.emilfreydigital.hr/vp_files/stock_images/80362/0899415a-1c72-4f99-ba1a-79c7d14b601a_640.jpg",
+                                        "https://stage1-vp-ch.emilfreydigital.hr/vp_files/stock_images/80362/26141823-ed17-47ba-888e-9c5264239057_640.jpg",
+                                        "https://stage1-vp-ch.emilfreydigital.hr/vp_files/stock_images/80362/77ed9cb8-7f02-42c4-b94c-33e13b3874bf_640.jpg",
+                                        "https://stage1-vp-ch.emilfreydigital.hr/vp_files/stock_images/80362/f371736a-ed9e-4eec-a86c-5bb312a980ee_640.jpg",
+                                        "https://stage1-vp-ch.emilfreydigital.hr/vp_files/stock_images/80362/b9bcff16-b6ea-4446-bf26-798045ac51c7_640.jpg",
+                                        "https://stage1-vp-ch.emilfreydigital.hr/vp_files/stock_images/80362/7b723304-c410-486e-958c-b548ac45c7ea_640.jpg"
+                                    ],
+                                    "XL": [
+                                        "https://stage1-vp-ch.emilfreydigital.hr/vp_files/stock_images/80362/d0332a2e-57a3-4f74-a12c-345fa8bb497b_1024.jpg",
+                                        "https://stage1-vp-ch.emilfreydigital.hr/vp_files/stock_images/80362/1fe067b6-cc4f-4419-bb51-611c43399066_1024.jpg",
+                                        "https://stage1-vp-ch.emilfreydigital.hr/vp_files/stock_images/80362/da231a84-7966-4a2c-a134-f60150629a02_1024.jpg",
+                                        "https://stage1-vp-ch.emilfreydigital.hr/vp_files/stock_images/80362/6ed7cc57-4b41-41a4-9573-bb454d781229_1024.jpg",
+                                        "https://stage1-vp-ch.emilfreydigital.hr/vp_files/stock_images/80362/0899415a-1c72-4f99-ba1a-79c7d14b601a_1024.jpg",
+                                        "https://stage1-vp-ch.emilfreydigital.hr/vp_files/stock_images/80362/26141823-ed17-47ba-888e-9c5264239057_1024.jpg",
+                                        "https://stage1-vp-ch.emilfreydigital.hr/vp_files/stock_images/80362/77ed9cb8-7f02-42c4-b94c-33e13b3874bf_1024.jpg",
+                                        "https://stage1-vp-ch.emilfreydigital.hr/vp_files/stock_images/80362/f371736a-ed9e-4eec-a86c-5bb312a980ee_1024.jpg",
+                                        "https://stage1-vp-ch.emilfreydigital.hr/vp_files/stock_images/80362/b9bcff16-b6ea-4446-bf26-798045ac51c7_1024.jpg",
+                                        "https://stage1-vp-ch.emilfreydigital.hr/vp_files/stock_images/80362/7b723304-c410-486e-958c-b548ac45c7ea_1024.jpg"
+                                    ],
+                                    "Original": [
+                                        "https://stage1-vp-ch.emilfreydigital.hr/vp_files/stock_images/80362/d0332a2e-57a3-4f74-a12c-345fa8bb497b.jpg",
+                                        "https://stage1-vp-ch.emilfreydigital.hr/vp_files/stock_images/80362/1fe067b6-cc4f-4419-bb51-611c43399066.jpg",
+                                        "https://stage1-vp-ch.emilfreydigital.hr/vp_files/stock_images/80362/da231a84-7966-4a2c-a134-f60150629a02.jpg",
+                                        "https://stage1-vp-ch.emilfreydigital.hr/vp_files/stock_images/80362/6ed7cc57-4b41-41a4-9573-bb454d781229.jpg",
+                                        "https://stage1-vp-ch.emilfreydigital.hr/vp_files/stock_images/80362/0899415a-1c72-4f99-ba1a-79c7d14b601a.jpg",
+                                        "https://stage1-vp-ch.emilfreydigital.hr/vp_files/stock_images/80362/26141823-ed17-47ba-888e-9c5264239057.jpg",
+                                        "https://stage1-vp-ch.emilfreydigital.hr/vp_files/stock_images/80362/77ed9cb8-7f02-42c4-b94c-33e13b3874bf.jpg",
+                                        "https://stage1-vp-ch.emilfreydigital.hr/vp_files/stock_images/80362/f371736a-ed9e-4eec-a86c-5bb312a980ee.jpg",
+                                        "https://stage1-vp-ch.emilfreydigital.hr/vp_files/stock_images/80362/b9bcff16-b6ea-4446-bf26-798045ac51c7.jpg",
+                                        "https://stage1-vp-ch.emilfreydigital.hr/vp_files/stock_images/80362/7b723304-c410-486e-958c-b548ac45c7ea.jpg"
+                                    ]
+                                }
+                            },
+                            "Km": {
+                                "description": "Mileage of a vehicle (in km).",
+                                "type": "integer",
+                                "example": "2000"
+                            },
+                            "MakeText": {
+                                "description": "Vehicle brand.",
+                                "type": "string",
+                                "example": "Kia"
+                            },
+                            "ModelGroupText": {
+                                "description": "Vehicle model group.",
+                                "type": "string",
+                                "example": "E-CLASS"
+                            },
+                            "ModelText": {
+                                "description": "Vehicle model.",
+                                "type": "string",
+                                "example": "e-Niro Style"
+                            },
+                            "ModelTypeText": {
+                                "description": "Vehicle model type.",
+                                "type": "string",
+                                "example": "e-Niro Style"
+                            },
+                            "PollutionNormTypeText": {
+                                "description": "Vehicle pollution norm data.",
+                                "type": "string",
+                                "example": "Euro 5"
+                            },
+                            "Price": {
+                                "description": "Vehicle price.",
+                                "type": "numeric",
+                                "example": "49900.0"
+                            },
+                            "PriceHistory": {
+                                "description": "Vehicle price history over time.",
+                                "type": "array",
+                                "items": {},
+                                "example": "[49900.0, 39900.0]"
+                            },
+                            "PriceNew": {
+                                "description": "Vehicle price if new.",
+                                "type": "numeric",
+                                "example": "53700.0"
+                            },
+                            "Properties": {
+                                "description": "Vehicle properties.",
+                                "type": "array",
+                                "items": {},
+                                "example": [
+                                    "prop1",
+                                    "prop2"
+                                ]
+                            },
+                            "AdditionalProperties": {
+                                "description": "Vehicle additional properties.",
+                                "type": "array",
+                                "items": {},
+                                "example": [
+                                    "prop1",
+                                    "prop2"
+                                ]
+                            },
+                            "Seats": {
+                                "description": "Number of seats in the vehicle.",
+                                "type": "integer",
+                                "example": "5"
+                            },
+                            "SegmentationId": {
+                                "description": "Segmentation id.",
+                                "type": "integer",
+                                "example": "5"
+                            },
+                            "Seller": {
+                                "description": "Vehicle Images",
+                                "properties": {
+                                    "Id": {
+                                        "type": "integer",
+                                        "example": "600"
+                                    },
+                                    "Name": {
+                                        "type": "string",
+                                        "example": "Emil Frey Zürich Altstetten"
+                                    },
+                                    "Street": {
+                                        "type": "string",
+                                        "example": "Badenerstrasse 600"
+                                    },
+                                    "Zip": {
+                                        "type": "string",
+                                        "example": "8048"
+                                    },
+                                    "City": {
+                                        "type": "string",
+                                        "example": "Zürich"
+                                    },
+                                    "AdditionalInfo": {
+                                        "type": "string",
+                                        "example": ""
+                                    },
+                                    "Phone": {
+                                        "type": "string",
+                                        "example": "+41 44 495 23 11"
+                                    },
+                                    "Mobile": {
+                                        "type": "string",
+                                        "example": "+41 44 495 23 11"
+                                    },
+                                    "Email": {
+                                        "type": "string",
+                                        "example": "autohaus@emilfrey.ch"
+                                    },
+                                    "Url": {
+                                        "type": "string",
+                                        "example": "http://www.emilfrey.ch/zuerich"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "Id": 600,
+                                    "Name": "Emil Frey Zürich Altstetten ",
+                                    "Street": "Badenerstrasse 600",
+                                    "Zip": "8048",
+                                    "City": "Zürich",
+                                    "AdditionalInfo": "",
+                                    "Phone": "+41 44 495 23 11",
+                                    "Mobile": "+41 44 495 23 11",
+                                    "Email": "autohaus@emilfrey.ch",
+                                    "Url": "http://www.emilfrey.ch/zuerich"
+                                }
+                            },
+                            "Teaser": {
+                                "description": "Vehicle teaser.",
+                                "type": "string",
+                                "example": "Eintauschprämie + Fr. 1'000.-"
+                            },
+                            "TransmissionTypeText": {
+                                "description": "Transmission type. A or M. 1 or 0",
+                                "type": "string",
+                                "example": "A"
+                            },
+                            "URLmarketplace": {
+                                "description": "External vehicle marketplace URL",
+                                "type": "string",
+                                "example": "www.urltocar.com"
+                            },
+                            "VatDeductible": {
+                                "description": "Vat deductible flag",
+                                "type": "boolean",
+                                "example": "true"
+                            },
+                            "VehicleType": {
+                                "description": "Vehicle type of a vehicle. Passenger, LCV, Truck",
+                                "type": "string",
+                                "example": "Passenger"
+                            },
+                            "Videos": {
+                                "description": "Links to car videos.",
+                                "type": "array",
+                                "items": {
+                                    "type": "string"
+                                },
+                                "example": [
+                                    "www.pathtovideo1.com",
+                                    "www.pathtovideo2.com"
+                                ]
+                            },
+                            "WarrantyDescription": {
+                                "description": "Warranty description of a vehicle",
+                                "type": "string",
+                                "example": "MAX 250 €"
+                            },
+                            "Weight": {
+                                "description": "Weight of a vehicle",
+                                "type": "integer",
+                                "example": "1866"
+                            }
+                        },
+                        "type": "object"
+                    }
+                },
+                "type": "object"
+            },
+            "VehicleUpdateRequestSchema": {
+                "description": "Vehicle update request Schema",
+                "required": [
+                    "origin",
+                    "brand",
+                    "model",
+                    "version",
+                    "version_description",
+                    "fuel_type",
+                    "gearbox",
+                    "km",
+                    "cm3",
+                    "kw",
+                    "hp",
+                    "firstregistration",
+                    "color_description",
+                    "co2",
+                    "b2b_price_ex_vat",
+                    "vat_deductible",
+                    "loading_place",
+                    "language_option_code_description",
+                    "currency_iso_codification",
+                    "condition_type",
+                    "vehicle_type",
+                    "pollution_norm",
+                    "weight"
+                ],
+                "properties": {
+                    "origin": {
+                        "type": "string",
+                        "example": "SK"
+                    },
+                    "brand": {
+                        "type": "string",
+                        "example": "Peugeot"
+                    },
+                    "model": {
+                        "type": "string",
+                        "example": "Clio"
+                    },
+                    "version": {
+                        "type": "string",
+                        "example": "ADVANTAGE"
+                    },
+                    "version_description": {
+                        "type": "string",
+                        "example": "ADVANTAGE Description"
+                    },
+                    "fuel_type": {
+                        "description": "One of:Gasoline,Diesel,Hybrid,Electric,LPG,Other Fuels,Alcohol,Cryogenic,Waterstof",
+                        "type": "string",
+                        "example": "Diesel"
+                    },
+                    "gearbox": {
+                        "description": "1-automatic, 0-manual",
+                        "type": "integer",
+                        "example": "1"
+                    },
+                    "km": {
+                        "type": "string",
+                        "example": "1234"
+                    },
+                    "cm3": {
+                        "type": "integer",
+                        "example": "1234"
+                    },
+                    "kw": {
+                        "type": "integer",
+                        "example": "1234"
+                    },
+                    "hp": {
+                        "type": "integer",
+                        "example": "1234"
+                    },
+                    "firstregistration": {
+                        "type": "string",
+                        "example": "01/01/2018"
+                    },
+                    "interior": {
+                        "type": "string",
+                        "example": "1DL"
+                    },
+                    "color_code": {
+                        "type": "string",
+                        "example": "23D2"
+                    },
+                    "color_description": {
+                        "type": "string",
+                        "example": "Ultimate Rot (3-Schicht-Lackierung)"
+                    },
+                    "options_code": {
+                        "type": "string",
+                        "example": "45G3"
+                    },
+                    "option_code_description": {
+                        "type": "string",
+                        "example": "Satinweiß Metallic · Navigation: SD-Navigationssystem mit NNG Technologie · Lackierung: Metallic Lenkrad"
+                    },
+                    "co2": {
+                        "type": "integer",
+                        "example": "1111"
+                    },
+                    "b2b_price_ex_vat": {
+                        "type": "string",
+                        "example": "19571.43"
+                    },
+                    "vat_deductible": {
+                        "type": "string",
+                        "example": "1"
+                    },
+                    "damages_excl_vat_info": {
+                        "type": "string",
+                        "example": "MAX 250 €"
+                    },
+                    "disponsibility": {
+                        "type": "string",
+                        "example": "10/27/2017"
+                    },
+                    "loading_place": {
+                        "type": "string",
+                        "example": "2455 - Ungeheuer Niederlassung Bruchsal"
+                    },
+                    "note": {
+                        "type": "string",
+                        "example": "Note"
+                    },
+                    "language_option_code_description": {
+                        "description": "1-English, 0-Anything else",
+                        "type": "integer",
+                        "example": "1"
+                    },
+                    "currency_iso_codification": {
+                        "type": "string",
+                        "example": "EUR"
+                    },
+                    "url_address": {
+                        "type": "string",
+                        "example": "www.someurl.com"
+                    },
+                    "media_path": {
+                        "type": "string",
+                        "example": "www.somesite.com/26321257-1.JPG;26321257-2.JPG;26321257-3.JPG;"
+                    },
+                    "condition_type": {
+                        "description": "One of:used,new,demo,new_registered",
+                        "type": "string",
+                        "example": "used"
+                    },
+                    "vehicle_type": {
+                        "description": "One of:LCV,Passenger,Truck",
+                        "type": "string",
+                        "example": "Passenger"
+                    },
+                    "account_id": {
+                        "type": "integer",
+                        "example": "2"
+                    },
+                    "body_type": {
+                        "type": "string",
+                        "example": "limousine"
+                    },
+                    "sku_number": {
+                        "type": "string",
+                        "example": "10148225-AWD / 22299272"
+                    },
+                    "certification_code": {
+                        "type": "string",
+                        "example": "5F31"
+                    },
+                    "fuel_consumption_city": {
+                        "type": "string",
+                        "example": "6.7"
+                    },
+                    "fuel_consumption_land": {
+                        "type": "string",
+                        "example": "7"
+                    },
+                    "fuel_consumption_rating": {
+                        "type": "string",
+                        "example": "Good and economic"
+                    },
+                    "fuel_consumption_total": {
+                        "type": "string",
+                        "example": "7.4"
+                    },
+                    "cylinders": {
+                        "type": "integer",
+                        "example": "4"
+                    },
+                    "documents": {
+                        "type": "string",
+                        "example": "Document.txt"
+                    },
+                    "coc": {
+                        "type": "string",
+                        "example": "/path/to/CocDocument.txt"
+                    },
+                    "doors": {
+                        "type": "integer",
+                        "example": "4"
+                    },
+                    "drive_type": {
+                        "type": "string",
+                        "example": "Front-wheel"
+                    },
+                    "has_warranty": {
+                        "type": "integer",
+                        "example": "1"
+                    },
+                    "id": {
+                        "type": "string",
+                        "example": "Autoscout => 23"
+                    },
+                    "model_group": {
+                        "type": "string",
+                        "example": "A-CLASS"
+                    },
+                    "pollution_norm": {
+                        "description": "One of:EURO0,EURO1,EURO2,EURO3,EURO4,EURO5,EURO6,EURO5A,EURO5B,EURO6A,EURO6B,EURO6C,EURO6D,EURO6+",
+                        "type": "string",
+                        "example": "EURO5"
+                    },
+                    "price": {
+                        "type": "number",
+                        "example": "40252.00"
+                    },
+                    "price_history": {
+                        "type": "number",
+                        "example": "40223, 40211, 50255 "
+                    },
+                    "price_new": {
+                        "type": "number",
+                        "example": "50255.00"
+                    },
+                    "properties": {
+                        "type": "string",
+                        "example": "prop1, prop2, prop3"
+                    },
+                    "additional_properties": {
+                        "type": "string",
+                        "example": "prop1, prop2, prop3"
+                    },
+                    "seats": {
+                        "type": "integer",
+                        "example": "4"
+                    },
+                    "segmentation_id": {
+                        "type": "string",
+                        "example": "45"
+                    },
+                    "teaser": {
+                        "type": "string",
+                        "example": "car_euro"
+                    },
+                    "videos": {
+                        "type": "string",
+                        "example": "27930017-1.AVI;27930017-2.AVI;27930017-3.MOV;"
+                    },
+                    "weight": {
+                        "type": "integer",
+                        "example": "3234"
+                    }
+                },
+                "type": "object"
+            },
+            "VehicleStoreRequestSchema": {
+                "description": "Vehicle store request Schema",
+                "required": [
+                    "manufacturer_id",
+                    "origin",
+                    "brand",
+                    "model",
+                    "version",
+                    "version_description",
+                    "fuel_type",
+                    "gearbox",
+                    "km",
+                    "cm3",
+                    "kw",
+                    "hp",
+                    "firstregistration",
+                    "color_description",
+                    "co2",
+                    "b2b_price_ex_vat",
+                    "vat_deductible",
+                    "loading_place",
+                    "language_option_code_description",
+                    "currency_iso_codification",
+                    "condition_type",
+                    "vehicle_type",
+                    "pollution_norm",
+                    "weight"
+                ],
+                "properties": {
+                    "manufacturer_id": {
+                        "description": "VIN, an, caf, ident or any other unique identifier of the vehicle",
+                        "type": "string",
+                        "example": "W0VF86E04K4146868"
+                    },
+                    "origin": {
+                        "type": "string",
+                        "example": "SK"
+                    },
+                    "brand": {
+                        "type": "string",
+                        "example": "Peugeot"
+                    },
+                    "model": {
+                        "type": "string",
+                        "example": "Clio"
+                    },
+                    "version": {
+                        "type": "string",
+                        "example": "ADVANTAGE"
+                    },
+                    "version_description": {
+                        "type": "string",
+                        "example": "ADVANTAGE Description"
+                    },
+                    "fuel_type": {
+                        "description": "One of:Gasoline,Diesel,Hybrid,Electric,LPG,Other Fuels,Alcohol,Cryogenic,Waterstof",
+                        "type": "string",
+                        "example": "Diesel"
+                    },
+                    "gearbox": {
+                        "description": "1-automatic, 0-manual",
+                        "type": "integer",
+                        "example": "1"
+                    },
+                    "km": {
+                        "type": "integer",
+                        "example": "1234"
+                    },
+                    "cm3": {
+                        "type": "integer",
+                        "example": "1234"
+                    },
+                    "kw": {
+                        "type": "integer",
+                        "example": "1234"
+                    },
+                    "hp": {
+                        "type": "integer",
+                        "example": "1234"
+                    },
+                    "firstregistration": {
+                        "type": "string",
+                        "example": "01/01/2018"
+                    },
+                    "interior": {
+                        "type": "string",
+                        "example": "1DL"
+                    },
+                    "color_code": {
+                        "type": "string",
+                        "example": "23D2"
+                    },
+                    "color_description": {
+                        "type": "string",
+                        "example": "Ultimate Rot (3-Schicht-Lackierung)"
+                    },
+                    "options_code": {
+                        "type": "string",
+                        "example": "45G3"
+                    },
+                    "option_code_description": {
+                        "type": "string",
+                        "example": "Satinweiß Metallic · Navigation: SD-Navigationssystem mit NNG Technologie · Lackierung: Metallic Lenkrad"
+                    },
+                    "co2": {
+                        "type": "integer",
+                        "example": "1111"
+                    },
+                    "b2b_price_ex_vat": {
+                        "type": "string",
+                        "example": "19571.43"
+                    },
+                    "vat_deductible": {
+                        "type": "string",
+                        "example": "1"
+                    },
+                    "damages_excl_vat_info": {
+                        "type": "string",
+                        "example": "MAX 250 €"
+                    },
+                    "disponsibility": {
+                        "type": "string",
+                        "example": "10/27/2017"
+                    },
+                    "loading_place": {
+                        "type": "string",
+                        "example": "2455 - Ungeheuer Niederlassung Bruchsal"
+                    },
+                    "note": {
+                        "type": "string",
+                        "example": "Note"
+                    },
+                    "language_option_code_description": {
+                        "description": "1-English, 0-Anything else",
+                        "type": "integer",
+                        "example": "1"
+                    },
+                    "currency_iso_codification": {
+                        "type": "string",
+                        "example": "EUR"
+                    },
+                    "url_address": {
+                        "type": "string",
+                        "example": "www.someurl.com"
+                    },
+                    "media_path": {
+                        "type": "string",
+                        "example": "www.somesite.com/26321257-1.JPG;26321257-2.JPG;26321257-3.JPG;"
+                    },
+                    "condition_type": {
+                        "description": "One of:used,new,demo,new_registered",
+                        "type": "string",
+                        "example": "used"
+                    },
+                    "vehicle_type": {
+                        "description": "One of:LCV,Passenger,Truck",
+                        "type": "string",
+                        "example": "Passenger"
+                    },
+                    "account_id": {
+                        "type": "string",
+                        "example": "2"
+                    },
+                    "body_type": {
+                        "type": "string",
+                        "example": "limousine"
+                    },
+                    "sku_number": {
+                        "type": "string",
+                        "example": "10148225-AWD / 22299272"
+                    },
+                    "certification_code": {
+                        "type": "string",
+                        "example": "5F31"
+                    },
+                    "fuel_consumption_city": {
+                        "type": "string",
+                        "example": "6.7"
+                    },
+                    "fuel_consumption_land": {
+                        "type": "string",
+                        "example": "7"
+                    },
+                    "fuel_consumption_rating": {
+                        "type": "string",
+                        "example": "Good and economic"
+                    },
+                    "fuel_consumption_total": {
+                        "type": "string",
+                        "example": "7.4"
+                    },
+                    "cylinders": {
+                        "type": "integer",
+                        "example": "4"
+                    },
+                    "documents": {
+                        "type": "string",
+                        "example": "Document.txt"
+                    },
+                    "coc": {
+                        "type": "string",
+                        "example": "/path/to/CocDocument.txt"
+                    },
+                    "doors": {
+                        "type": "integer",
+                        "example": "4"
+                    },
+                    "drive_type": {
+                        "type": "string",
+                        "example": "Front-wheel"
+                    },
+                    "has_warranty": {
+                        "type": "integer",
+                        "example": "1"
+                    },
+                    "id": {
+                        "type": "string",
+                        "example": "Autoscout => 23"
+                    },
+                    "model_group": {
+                        "type": "string",
+                        "example": "A-CLASS"
+                    },
+                    "pollution_norm": {
+                        "description": "One of:EURO0,EURO1,EURO2,EURO3,EURO4,EURO5,EURO6,EURO5A,EURO5B,EURO6A,EURO6B,EURO6C,EURO6D,EURO6+",
+                        "type": "string",
+                        "example": "EURO5"
+                    },
+                    "price": {
+                        "type": "number",
+                        "example": "40252.00"
+                    },
+                    "price_history": {
+                        "type": "number",
+                        "example": "40223, 40211, 50255 "
+                    },
+                    "price_new": {
+                        "type": "number",
+                        "example": "50255.00"
+                    },
+                    "properties": {
+                        "type": "string",
+                        "example": "prop1, prop2, prop3"
+                    },
+                    "additional_properties": {
+                        "type": "string",
+                        "example": "prop1, prop2, prop3"
+                    },
+                    "seats": {
+                        "type": "integer",
+                        "example": "4"
+                    },
+                    "segmentation_id": {
+                        "type": "string",
+                        "example": "45"
+                    },
+                    "teaser": {
+                        "type": "string",
+                        "example": "car_euro"
+                    },
+                    "videos": {
+                        "type": "string",
+                        "example": "27930017-1.AVI;27930017-2.AVI;27930017-3.MOV;"
+                    },
+                    "weight": {
+                        "type": "integer",
+                        "example": "3234"
+                    }
+                },
+                "type": "object"
+            },
+            "VehicleResponseSchema": {
+                "description": "Vehicle response Schema",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": 16565
+                    },
+                    "manufacturer_id": {
+                        "type": "string",
+                        "example": "WAUZZZF47KA027542"
+                    },
+                    "origin": {
+                        "type": "string",
+                        "example": "NL"
+                    },
+                    "brand": {
+                        "type": "string",
+                        "example": "NL"
+                    },
+                    "model": {
+                        "type": "string",
+                        "example": "AUDI"
+                    },
+                    "version": {
+                        "type": "string",
+                        "example": "AVANT 40 TFSI 190PK S-TRONIC S LINE EDITION"
+                    },
+                    "version_description": {
+                        "type": "string",
+                        "example": "AVANT 40 TFSI 190PK S-TRONIC S LINE EDITION DESCRIPTION"
+                    },
+                    "fuel_type": {
+                        "type": "string",
+                        "example": "Gasoline"
+                    },
+                    "gearbox": {
+                        "type": "string",
+                        "example": "A"
+                    },
+                    "km": {
+                        "type": "integer",
+                        "example": 49555
+                    },
+                    "firstregistration": {
+                        "type": "string",
+                        "example": "2019-01-21T23:00:00.000000Z"
+                    },
+                    "interior": {
+                        "type": "string",
+                        "example": "Antraciet"
+                    },
+                    "color_code": {
+                        "type": "string",
+                        "example": "2FB"
+                    },
+                    "color_description": {
+                        "type": "string",
+                        "example": "Floretsilver(zilver)"
+                    },
+                    "options_code": {
+                        "type": "string",
+                        "example": "0F"
+                    },
+                    "option_code_description": {
+                        "type": "string",
+                        "example": "Sports seats Anti-lock braking system Cruise control Driver's airbag Front central armrest Front side airbags Height adjustable steering wheel Onboard computer Passenger airbag Rear parking sensor Remote central locking Roof rails Roof spoiler Sports suspensio"
+                    },
+                    "option_code_description_english": {
+                        "type": "string",
+                        "example": "Sports seats Anti-lock braking system Cruise control Driver's airbag Front central armrest Front side airbags Height adjustable steering wheel Onboard computer Passenger airbag Rear parking sensor Remote central locking Roof rails Roof spoiler Sports suspensio"
+                    },
+                    "b2b_price_ex_vat": {
+                        "type": "string",
+                        "example": "35900.00"
+                    },
+                    "price_in_euro": {
+                        "type": "string",
+                        "example": "35900.00"
+                    },
+                    "vat_deductible": {
+                        "type": "string",
+                        "example": "1"
+                    },
+                    "damages_excl_vat_info": {
+                        "type": "string",
+                        "example": "n"
+                    },
+                    "disponibility": {
+                        "type": "string",
+                        "example": "2021-07-23"
+                    },
+                    "language_option_code_description": {
+                        "type": "string",
+                        "example": "1"
+                    },
+                    "currency_iso_codification": {
+                        "type": "string",
+                        "example": "EUR"
+                    },
+                    "url_address": {
+                        "type": "string",
+                        "example": "https://www.pouw.nl/stock/stocks/detail/28073458"
+                    },
+                    "note": {
+                        "type": "string",
+                        "example": "Deze Audi A4 hebben wij professioneel en volgens strenge dealereisen rijklaar gemaakt. Hij staat klaar voor vertrek dus je kunt snel met hem op weg. Zo hebben wij de auto op 130 punten technisch gecheckt en heeft de auto de komende 10.000 kilometer of binnen 6 maanden een onderhoudsbeurt nodig? Dan hebben wij deze alvast uitgevoerd. Ook is de binnen- en buitenkant uitgebreid gereinigd en heeft de auto een volle tank brandstof.  Bovendien voorzien wij je Audi van 6 maanden Audi Selectie :plus-garantie inclusief pechhulp binnen heel Europa. <br /><br />Pouw is jouw bekende gezicht voor Audi, Volkswagen, SEAT, &Scaron;KODA en Volkswagen Bedrijfswagens. We zijn er voor je met de verkoop van nieuwe en gebruikte personen- en bedrijfswagens en met onze werkplaatsen, financierings- en verhuuractiviteiten en ons schadeherstelbedrijf. Verwacht van ons snelheid, zekerheid en duidelijkheid in onze manier van doen. Dat past bij onze merken, dat past bij onze collega&rsquo;s, dat past bij onze regio en het past bij jou. Zo gaan we samen vooruit. <br /><br />Wij nodigen je graag uit om deze Audi te komen bekijken en ervaren met een proefrit. Wanneer kom je eens langs?"
+                    },
+                    "media_path": {
+                        "type": "array",
+                        "items": {},
+                        "example": [
+                            "http://carmarket/de_images/101658196_01.jpg",
+                            "http://carmarket/de_images/101658196_02.jpg"
+                        ]
+                    },
+                    "connectivity_partner_id": {
+                        "type": "string",
+                        "example": "31300"
+                    },
+                    "body_type": {
+                        "type": "string",
+                        "example": "SUV"
+                    },
+                    "sku_number": {
+                        "type": "string",
+                        "example": "15621633-AWD"
+                    },
+                    "certification_code": {
+                        "type": "string",
+                        "example": "2FD"
+                    },
+                    "condition_type": {
+                        "type": "string",
+                        "example": "used"
+                    },
+                    "fuel_consumption_city": {
+                        "type": "string",
+                        "example": "5.8"
+                    },
+                    "fuel_consumption_land": {
+                        "type": "string",
+                        "example": "5.8"
+                    },
+                    "fuel_consumption_rating": {
+                        "type": "string",
+                        "example": "C"
+                    },
+                    "fuel_consumption_total": {
+                        "type": "number",
+                        "example": "5.8"
+                    },
+                    "cylinders": {
+                        "type": "integer",
+                        "example": "4"
+                    },
+                    "documents": {
+                        "type": "string",
+                        "example": "www.url.com/doc1;www.url.com/doc2;"
+                    },
+                    "doors": {
+                        "type": "integer",
+                        "example": "5"
+                    },
+                    "drive_type": {
+                        "type": "string",
+                        "example": "motorisch"
+                    },
+                    "has_warranty": {
+                        "type": "boolean",
+                        "example": "true"
+                    },
+                    "external_id": {
+                        "properties": {
+                            "DE": {
+                                "type": "string",
+                                "example": "45646"
+                            }
+                        },
+                        "type": "object"
+                    },
+                    "model_group": {
+                        "type": "string",
+                        "example": "A4 Avant"
+                    },
+                    "pollution_norm": {
+                        "type": "string",
+                        "example": "EURO1"
+                    },
+                    "price": {
+                        "type": "string",
+                        "example": "35900.00"
+                    },
+                    "price_history": {
+                        "type": "string",
+                        "example": "35900.00, 45900.00, 55900.00"
+                    },
+                    "price_new": {
+                        "type": "number",
+                        "example": "35900.00"
+                    },
+                    "properties": {
+                        "type": "array",
+                        "items": {},
+                        "example": [
+                            "prop1",
+                            "prop2"
+                        ]
+                    },
+                    "additional_properties": {
+                        "type": "array",
+                        "items": {},
+                        "example": [
+                            "prop1",
+                            "prop2"
+                        ]
+                    },
+                    "seats": {
+                        "type": "integer",
+                        "example": "5"
+                    },
+                    "segmentation_id": {
+                        "type": "string",
+                        "example": "FD5445FDF"
+                    },
+                    "seller": {
+                        "type": "string",
+                        "example": "Pouw Deventer, Deventer, NL"
+                    },
+                    "teaser": {
+                        "type": "string",
+                        "example": "34FD34"
+                    },
+                    "type_name": {
+                        "type": "string",
+                        "example": "Audi, A4, Avant 40 TFSI 190pk S-Tronic S Line Edition"
+                    },
+                    "videos": {
+                        "type": "string",
+                        "example": "www.url.com/video1;www.url.com/video2;"
+                    },
+                    "weight": {
+                        "type": "integer",
+                        "example": "2500"
+                    },
+                    "vehicle_type": {
+                        "type": "string",
+                        "example": "Passenger"
+                    },
+                    "country": {
+                        "type": "string",
+                        "example": "nl"
+                    },
+                    "company": {
+                        "type": "string",
+                        "example": "Pouw Deventer"
+                    },
+                    "company_id": {
+                        "type": "integer",
+                        "example": "86"
+                    },
+                    "created_at": {
+                        "type": "date",
+                        "example": "2021-12-08T15:14:02.000000Z"
+                    },
+                    "updated_at": {
+                        "type": "date",
+                        "example": "2021-12-08T15:14:02.000000Z"
+                    },
+                    "coc": {
+                        "type": "string",
+                        "example": "www.path.com/coc"
+                    },
+                    "co2": {
+                        "type": "integer",
+                        "example": 152
+                    },
+                    "cm3": {
+                        "type": "integer",
+                        "example": 1984
+                    },
+                    "kw": {
+                        "type": "integer",
+                        "example": 140
+                    },
+                    "hp": {
+                        "type": "integer",
+                        "example": 150
+                    }
+                },
+                "type": "object"
+            },
+            "ErrorSchema": {
+                "required": [
+                    "error"
+                ],
+                "properties": {
+                    "error": {
+                        "type": "array",
+                        "items": {
+                            "properties": {
+                                "type": {
+                                    "type": "string"
+                                },
+                                "field": {
+                                    "type": "string"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                },
+                "type": "object"
+            },
+            "ValidationSchema": {
+                "required": [
+                    "error_key",
+                    "error_message",
+                    "code",
+                    "errors"
+                ],
+                "properties": {
+                    "error": {
+                        "type": "array",
+                        "items": {
+                            "properties": {
+                                "type": {
+                                    "type": "string"
+                                },
+                                "field": {
+                                    "type": "string"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                },
+                "type": "object"
+            },
+            "SuccessMessageSchema": {
+                "required": [
+                    "stauts",
+                    "message"
+                ],
+                "properties": {
+                    "status": {
+                        "type": "string"
+                    },
+                    "message": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "ErrorMessageSchema": {
+                "required": [
+                    "stauts",
+                    "message"
+                ],
+                "properties": {
+                    "status": {
+                        "type": "string"
+                    },
+                    "message": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "securitySchemes": {
+            "AuthJWT": {
+                "type": "apiKey",
+                "name": "Authorization",
+                "in": "header",
+                "bearerFormat": "JWT",
+                "scheme": "bearer"
+            }
+        }
+    },
+    "security": [
+        []
+    ]
+}

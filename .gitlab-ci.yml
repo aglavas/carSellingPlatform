@@ -1,0 +1,25 @@
+variables:
+  # Note about GIT_STRATEGY: clone: We had to use that since CentOS 7 has an old git version installed, this is the workaround
+  # according to: https://gitlab.com/gitlab-org/gitlab-foss/-/issues/60466.
+  GIT_STRATEGY: clone
+
+deploy-to-production:
+  only:
+    - master
+  script:
+    - chmod 700 deployer.phar
+    - ./deployer.phar deploy -f deploy-ci.php production
+
+deploy-to-stage:
+  only:
+    - stage
+  script:
+    - chmod 700 deployer.phar
+    - ./deployer.phar deploy -f deploy-ci.php stage
+
+deploy-to-develop:
+  only:
+    - "develop"
+  script:
+    - chmod 700 deployer.phar
+    - ./deployer.phar deploy -f deploy-ci.php develop

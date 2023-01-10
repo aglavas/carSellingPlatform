@@ -1,0 +1,136 @@
+<?php
+
+namespace App\Nova;
+
+use App\VinDocuments;
+use Illuminate\Http\Request;
+use Laravel\Nova\Fields\ID;
+use Laravel\Nova\Fields\Select;
+use Laravel\Nova\Fields\File;
+use Laravel\Nova\Fields\Text;
+
+class Documents extends Resource
+{
+
+    /**
+     * The model the resource corresponds to.
+     *
+     * @var string
+     */
+    public static $model = VinDocuments::class;
+
+    public static $group = '05 Documents';
+
+    /**
+     * The single value that should be used to represent the resource when being displayed.
+     *
+     * @var string
+     */
+    public static $title = 'id';
+
+    /**
+     * The columns that should be searched.
+     *
+     * @var array
+     */
+    public static $search = [
+
+    ];
+
+    public static function label()
+    {
+        return 'Vin Documents';
+    }
+
+    /**
+     * Get the fields displayed by the resource.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @return array
+     */
+    public function fields(Request $request)
+    {
+        $vinArray = \App\StockUsedCentralEurope::pluck('vin')->toArray();
+
+        $dropDownVinArray = array_combine($vinArray, $vinArray);
+
+        return [
+            ID::make()->sortable()->hideFromIndex(),
+            Select::make('VIN')->options(
+                $dropDownVinArray
+            )->canSee(function ($request) {
+                return $request->user()->hasRole('Administrator');
+            })->rules('required'),
+            File::make('File1', 'path1')->rules('required'),
+            Text::make('Description1', 'description1')->rules('required'),
+            File::make('File2', 'path2')->rules('requiredWith:description2'),
+            Text::make('Description2', 'description2')->rules('requiredWith:path2'),
+            File::make('File3', 'path3')->rules('requiredWith:description3'),
+            Text::make('Description3', 'description3')->rules('requiredWith:path3'),
+            File::make('File4', 'path4')->rules('requiredWith:description4'),
+            Text::make('Description4', 'description4')->rules('requiredWith:path4'),
+            File::make('File5', 'path5')->rules('requiredWith:description5'),
+            Text::make('Description5', 'description5')->rules('requiredWith:path5'),
+            File::make('File6', 'path6')->rules('requiredWith:description6'),
+            Text::make('Description6', 'description6')->rules('requiredWith:path6'),
+            File::make('File7', 'path7')->rules('requiredWith:description7'),
+            Text::make('Description7', 'description7')->rules('requiredWith:path7'),
+            File::make('File8', 'path8')->rules('requiredWith:description8'),
+            Text::make('Description8', 'description8')->rules('requiredWith:path8'),
+            File::make('File9', 'path9')->rules('requiredWith:description9'),
+            Text::make('Description9', 'description9')->rules('requiredWith:path9'),
+            File::make('File10', 'path10')->rules('requiredWith:description10'),
+            Text::make('Description10', 'description10')->rules('requiredWith:path10'),
+        ];
+    }
+
+    /**
+     * Get the cards available for the request.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @return array
+     */
+    public function cards(Request $request)
+    {
+        return [
+
+        ];
+    }
+
+    /**
+     * Get the filters available for the resource.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @return array
+     */
+    public function filters(Request $request)
+    {
+        return [
+
+        ];
+    }
+
+    /**
+     * Get the lenses available for the resource.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @return array
+     */
+    public function lenses(Request $request)
+    {
+        return [];
+    }
+
+    /**
+     * Get the actions available for the resource.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @return array
+     */
+    public function actions(Request $request)
+    {
+        return [
+
+        ];
+    }
+}

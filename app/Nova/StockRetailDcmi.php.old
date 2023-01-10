@@ -1,0 +1,136 @@
+<?php
+
+namespace App\Nova;
+
+use Illuminate\Http\Request;
+use Laravel\Nova\Fields\ID;
+use Laravel\Nova\Fields\Text;
+use Laravel\Nova\Fields\Textarea;
+use Laravel\Nova\Http\Requests\NovaRequest;
+
+class StockRetailDcmi extends Resource
+{
+    /**
+     * The model the resource corresponds to.
+     *
+     * @var string
+     */
+    public static $model = \App\StockRetailDcmi::class;
+
+    public static $group = 'Used Stock';
+
+    /**
+     * The single value that should be used to represent the resource when being displayed.
+     *
+     * @var string
+     */
+    public static $title = 'id';
+
+    /**
+     * The columns that should be searched.
+     *
+     * @var array
+     */
+    public static $search = [
+        'id',
+        'make',
+        'model',
+        'car_number',
+        'vin',
+        'certification_code'
+    ];
+
+    public static function label()
+    {
+        return 'Central Europe';
+    }
+
+    /**
+     * Get the fields displayed by the resource.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return array
+     */
+    public function fields(Request $request)
+    {
+        return [
+            ID::make()->sortable()->hideFromIndex(),
+            Text::make('Net Price')->sortable(),
+            Text::make('Net Price Currency'),
+            Text::make('Net Price Including VAT'),
+            Text::make('Seller Phone'),
+            Text::make('Country'),
+            Text::make('VIN'),
+            Text::make('Body Color'),
+            Text::make('Body Type'),
+            Text::make('Car Number'),
+            Text::make('CCM'),
+            Text::make('Certification Code'),
+            Text::make('CO2 Emission'),
+            Text::make('Consumption Rating Total'),
+            Text::make('Consumption Rating'),
+            Text::make('Cylinders'),
+            Text::make('Fuel Type'),
+            Text::make('HP'),
+            Text::make('Make'),
+            Text::make('Model'),
+            Text::make('Model Type'),
+            Text::make('Seats'),
+            Text::make('Transmission Type'),
+            Text::make('Vehicle Type'),
+            Text::make('B2B Price')->sortable(),
+            Text::make('Condition Type'),
+            Text::make('Warranty in Months'),
+            Text::make('Is Metallic?'),
+            Text::make('Status'),
+            Textarea::make('Remarks'),
+            Text::make('Interior Color'),
+            Text::make('Interior Type'),
+            Text::make('Autoidat FzKey'),
+        ];
+    }
+
+    /**
+     * Get the cards available for the request.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return array
+     */
+    public function cards(Request $request)
+    {
+        return [];
+    }
+
+    /**
+     * Get the filters available for the resource.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return array
+     */
+    public function filters(Request $request)
+    {
+        return [];
+    }
+
+    /**
+     * Get the lenses available for the resource.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return array
+     */
+    public function lenses(Request $request)
+    {
+        return [];
+    }
+
+    /**
+     * Get the actions available for the resource.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return array
+     */
+    public function actions(Request $request)
+    {
+        return [];
+    }
+}
